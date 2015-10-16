@@ -1,0 +1,64 @@
+---
+message: "This node is using AristaEOS OS data"
+
+classes:
+  - eos_config
+  - eos_config::snmp
+  - eos_config::vlans
+  - eos_config::syslog_servers
+#  - notify
+#  - eos_ntp_server
+#eos_ntp_server::name: 10.68.49.204
+#eos_ntp_server::ensure: present
+
+# Set rubygem versions for rbeapi & pre-reqs
+eos_config::inifile_ver: '3.0.0'
+eos_config::net_http_unix_ver: '0.2.1'
+eos_config::netaddr_ver: '1.5.0'
+eos_config::rbeapi_ver: '0.3.0'
+
+# Since switched don't have access to rubygems.org, provide the files:
+# stage them with 'cd $environment/modules/eos_config/files/gems; ./fetch_gems.sh'
+eos_config::inifile_path: puppet:///modules/eos_config/gems/inifile-3.0.0.gem
+eos_config::net_http_unix_path: puppet:///modules/eos_config/gems/net_http_unix-0.2.1.gem
+eos_config::netaddr_path: puppet:///modules/eos_config/gems/netaddr-1.5.0.gem
+eos_config::rbeapi_path: puppet:///modules/eos_config/gems/rbeapi-0.3.0.gem
+
+vlans:
+  1: { vlan_name: default }
+  2: { vlan_name: TestVlan_2 }
+  9: { vlan_name: Demo_vlan }
+  100: { vlan_name: TestVlan_100, enable: false }
+  101: { vlan_name: TEST_VLAN_101 }
+  102: { vlan_name: TEST_VLAN_102 }
+  103: { vlan_name: TEST_VLAN_103 }
+  104: { vlan_name: TEST_VLAN_104 }
+  105: { vlan_name: TEST_VLAN_105 }
+  106: { vlan_name: TEST_VLAN_106 }
+  107: { vlan_name: TEST_VLAN_107 }
+  108: { vlan_name: TEST_VLAN_108 }
+  109: { vlan_name: TEST_VLAN_109 }
+
+# setting this value to true will remove any vlans not explicitly configured
+eos_config::vlans::purge: false
+
+ntp::enable: true
+ntp::servers:
+  - 172.16.130.10
+
+#eos_config::snmp::contact: 'Fezig'
+#eos_config::snmp::location: 'The cliffs of insanity'
+
+snmp:
+  settings:
+    contact: 'Fezig'
+    location: 'The cliffs of insanity'
+
+communities:
+  public: {group: ro}
+  private: {group: rw}
+  devops: {group: rw}
+  #devops: {group: rw, acl: 101}
+
+syslog_servers:
+  172.16.130.10: {}
