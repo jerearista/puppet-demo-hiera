@@ -1,10 +1,10 @@
 ---
 message: "This node is using common data"
 
-classes:
-  - eos_config::ntp
-  - eos_config::snmp
-  - eos_config::name_servers
+#classes:
+#  - eos_config::ntp
+#  - eos_config::snmp
+#  - eos_config::name_servers
 
 ntp::source_interface: 'Management1'
 ntp::servers:

@@ -2,8 +2,9 @@
 classes:
   - eos_config::loopback
   - eos_config::switchports
-  - eos_config::mlag
-  - eos_config::interfaces
+  #- eos_config::mlag
+  #- eos_config::mlag_downlinks
+  #- eos_config::interfaces
   #- eos_config::l3interfaces
   #- eos_config::switchports
   #- eos_config::portchannels
@@ -14,6 +15,9 @@ eos_config::vlans::purge: false
 
 eos_config::loopback::address: 1.1.1.2/32
 
+#eos_config::mlag::domain_id: SPINE-MLAG
+#eos_config::mlag::local_interface: Vlan4094
+#eos_config::mlag::peer_link: Port-Channel100
 eos_config::mlag::members: ['Ethernet3']
 eos_config::mlag::peer_address: 172.16.10.1
 eos_config::mlag::local_address: 172.16.10.2/24

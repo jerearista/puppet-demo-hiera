@@ -1,10 +1,10 @@
 ---
-classes:
-  - eos_config::loopback
-  - eos_config::portchannel
+#classes:
+#  - eos_config::loopback
+#  - eos_config::portchannel
   #- eos_config::switchports
   #- eos_config::interfaces
-  - eos_config::l3interfaces
+  #- eos_config::l3interfaces
   #- eos_config::switchports
 
 vlans:
